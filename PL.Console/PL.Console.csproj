@@ -57,6 +57,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{04e46904-2dd0-420c-92e8-2ae43f952bcc}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ORM\ORM.csproj">
       <Project>{4f10cef7-b636-46a6-b0da-dc269d711d69}</Project>
       <Name>ORM</Name>

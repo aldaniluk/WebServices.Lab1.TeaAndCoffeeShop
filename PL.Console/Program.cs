@@ -1,4 +1,5 @@
-﻿using ORM;
+﻿using DAL.Repositories;
+using ORM;
 
 namespace PL.Console
 {
@@ -6,11 +7,13 @@ namespace PL.Console
     {
         static void Main(string[] args)
         {
+
             using (var context = new TeaAndCoffeeDbContext())
             {
-                foreach (var coffee in context.Set<Country>())
+                var repository = new CoffeeRepository(context);
+                foreach (var coffee in repository.GetAll())
                 {
-                    System.Console.WriteLine($"{coffee.Name}");
+                    System.Console.WriteLine($"{coffee.Name} {coffee.CoffeeSortId}");
                 }
             }
         }

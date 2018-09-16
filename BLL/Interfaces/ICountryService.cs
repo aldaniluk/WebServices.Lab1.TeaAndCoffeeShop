@@ -5,7 +5,6 @@ using System.ServiceModel;
 namespace BLL.Services
 {
     [ServiceContract]
-    [ServiceKnownType(typeof(CountryBll))]
     public interface ICountryService
     {
         [OperationContract]

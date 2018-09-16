@@ -6,7 +6,6 @@ using System.ServiceModel;
 namespace BLL.Services
 {
     [ServiceContract]
-    [ServiceKnownType(typeof(CountryBll))]
     public interface ICoffeeService
     {
         [OperationContract]
@@ -23,5 +22,8 @@ namespace BLL.Services
 
         [OperationContract]
         void Create(CoffeeBll coffee);
+
+        [OperationContract]
+        List<CoffeeBll> Filter(CoffeeSortBll sort, Guid countryId);
     }
 }

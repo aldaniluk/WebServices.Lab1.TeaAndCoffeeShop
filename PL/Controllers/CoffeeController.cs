@@ -24,6 +24,8 @@ namespace PL.Controllers
         public ActionResult Index()
         {
             List<CoffeeView> allCoffee = coffeeService.GetAll().Select(CoffeeMapper.Map).ToList();
+            ViewBag.Countries = GetCountriesLikeSelectList();
+            ViewBag.CoffeeSorts = GetEnumLikeSelectList<CoffeeSortBll>();
 
             return View(allCoffee);
         }
@@ -100,6 +102,18 @@ namespace PL.Controllers
             ViewBag.Qualities = GetEnumLikeSelectList<QualityBll>();
 
             return View("Create");
+        }
+
+        public ActionResult Filter(CoffeeSortBll sort, Guid countryId)
+        {
+            List<CoffeeView> coffee = coffeeService.Filter(sort, countryId).Select(CoffeeMapper.Map).ToList();
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_Coffee", coffee);
+            }
+
+            return View("_Coffee", coffee);
         }
 
         private SelectList GetCountriesLikeSelectList()

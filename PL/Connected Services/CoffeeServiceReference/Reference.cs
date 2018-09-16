@@ -44,6 +44,12 @@ namespace PL.CoffeeServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICoffeeService/Create", ReplyAction="http://tempuri.org/ICoffeeService/CreateResponse")]
         System.Threading.Tasks.Task CreateAsync(BLL.Models.CoffeeBll coffee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICoffeeService/Filter", ReplyAction="http://tempuri.org/ICoffeeService/FilterResponse")]
+        BLL.Models.CoffeeBll[] Filter(BLL.Models.CoffeeSortBll sort, System.Guid countryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICoffeeService/Filter", ReplyAction="http://tempuri.org/ICoffeeService/FilterResponse")]
+        System.Threading.Tasks.Task<BLL.Models.CoffeeBll[]> FilterAsync(BLL.Models.CoffeeSortBll sort, System.Guid countryId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -111,6 +117,14 @@ namespace PL.CoffeeServiceReference {
         
         public System.Threading.Tasks.Task CreateAsync(BLL.Models.CoffeeBll coffee) {
             return base.Channel.CreateAsync(coffee);
+        }
+        
+        public BLL.Models.CoffeeBll[] Filter(BLL.Models.CoffeeSortBll sort, System.Guid countryId) {
+            return base.Channel.Filter(sort, countryId);
+        }
+        
+        public System.Threading.Tasks.Task<BLL.Models.CoffeeBll[]> FilterAsync(BLL.Models.CoffeeSortBll sort, System.Guid countryId) {
+            return base.Channel.FilterAsync(sort, countryId);
         }
     }
 }

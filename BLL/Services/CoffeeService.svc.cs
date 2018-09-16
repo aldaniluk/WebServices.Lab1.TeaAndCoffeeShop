@@ -26,6 +26,12 @@ namespace BLL.Services
             coffeeRepository.Delete(coffee.Map());
         }
 
+        public List<CoffeeBll> Filter(CoffeeSortBll sort, Guid countryId)
+        {
+            return coffeeRepository.GetAll().Where(c => c.CoffeeSortId == (int)sort && c.Country.Id == countryId)
+                .Select(CoffeeMapper.Map).ToList();
+        }
+
         public List<CoffeeBll> GetAll()
         {
             return coffeeRepository.GetAll().Select(CoffeeMapper.Map).ToList();

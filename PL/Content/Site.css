@@ -46,3 +46,11 @@ body {
 .jumbotron_main_page > h1 {
     font-size: 70px;
 }
+
+.details_buttons {
+    padding: 30px 0;
+}
+
+.tea_coffee_description {
+    padding: 10px 30px;
+}

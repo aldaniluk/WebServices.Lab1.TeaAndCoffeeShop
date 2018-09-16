@@ -1,22 +1,23 @@
 ﻿using BLL.Models;
-using ORM;
+using PL.Models;
+using System;
 
-namespace BLL.Mappers
+namespace PL.Mappers
 {
     public static class CountryMapper
     {
-        public static CountryBll Map(this Country country)
+        public static CountryView Map(this CountryBll country)
         {
-            return new CountryBll
+            return new CountryView
             {
                 Id = country.Id,
                 Name = country.Name
             };
         }
 
-        public static Country Map(this CountryBll country)
+        public static CountryBll Map(this CountryView country)
         {
-            return new Country
+            return new CountryBll
             {
                 Id = country.Id,
                 Name = country.Name

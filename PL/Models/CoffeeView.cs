@@ -1,8 +1,9 @@
-﻿using System;
+﻿using BLL.Models;
+using System;
 
-namespace BLL.Models
+namespace PL.Models
 {
-    public class CoffeeBll
+    public class CoffeeView
     {
         public Guid Id { get; set; }
 
@@ -10,7 +11,7 @@ namespace BLL.Models
 
         public string Description { get; set; }
 
-        public CountryBll MadeFromCountry { get; set; }
+        public CountryView MadeFromCountry { get; set; }
 
         public decimal PriceFor100Gr { get; set; }
 

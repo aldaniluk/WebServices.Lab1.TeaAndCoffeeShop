@@ -1,0 +1,14 @@
+﻿@model PL.Models.CoffeeView
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Name</h2>
+<h4>@Model.CoffeeSort</h4>
+<h4>@Model.MadeFromCountry.Name</h4>
+<h4>$@Model.PriceFor100Gr</h4>
+<h4>@Model.Quality</h4>
+<h4>@Model.Description</h4>
+
+@Html.ActionLink("Edit", "Edit", "Coffee", new { id = @Model.Id }, new { @class = "btn btn-default" })
+@Html.ActionLink("Delete", "Delete", "Coffee", new { id = @Model.Id }, new { @class = "btn btn-default" })

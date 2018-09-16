@@ -1,0 +1,40 @@
+﻿@model List<PL.Models.CoffeeView>
+@{
+    ViewBag.Title = "Coffee";
+}
+
+<br />
+
+@Html.ActionLink("Create", "Create", "Coffee", null, new { @class = "btn btn-default" })
+
+<br /><br />
+
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Sort</th>
+        <th>Country</th>
+        <th>Price</th>
+        <th>Quality</th>
+        <th>Description</th>
+        <th></th>
+    </tr>
+
+    @foreach (var coffee in Model)
+    {
+        <tr>
+            <td>@coffee.Name</td>
+            <td>@coffee.CoffeeSort</td>
+            <td>@coffee.MadeFromCountry.Name</td>
+            <td>$@coffee.PriceFor100Gr</td>
+            <td>@coffee.Quality</td>
+            <td>@coffee.Description</td>
+            <td style="width: 250px">
+                @Html.ActionLink("Details", "Details", "Coffee", new { id = @coffee.Id }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Edit", "Edit", "Coffee", new { id = @coffee.Id }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Delete", "Delete", "Coffee", new { id = @coffee.Id }, new { @class = "btn btn-default" })
+            </td>
+        </tr>
+    }
+
+</table>

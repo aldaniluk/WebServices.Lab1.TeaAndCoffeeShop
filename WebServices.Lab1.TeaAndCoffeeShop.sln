@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORM", "ORM\ORM.csproj", "{4F10CEF7-B636-46A6-B0DA-DC269D711D69}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL", "PL\PL.csproj", "{D2E13E7B-400C-4F9B-97C0-D3BE034A998A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{646ED01A-2666-45B6-9276-A08E4313A14B} = {646ED01A-2666-45B6-9276-A08E4313A14B}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL.Console", "PL.Console\PL.Console.csproj", "{1175433B-2D01-44C5-B481-2A7AC93E52C0}"
 	ProjectSection(ProjectDependencies) = postProject

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BLL.Mappers;
 using BLL.Models;
@@ -15,9 +16,29 @@ namespace BLL.Services
             this.coffeeRepository = coffeeRepository;
         }
 
+        public void Create(CoffeeBll coffee)
+        {
+            coffeeRepository.Create(coffee.Map());
+        }
+
+        public void Delete(CoffeeBll coffee)
+        {
+            coffeeRepository.Delete(coffee.Map());
+        }
+
         public List<CoffeeBll> GetAll()
         {
             return coffeeRepository.GetAll().Select(CoffeeMapper.Map).ToList();
+        }
+
+        public CoffeeBll GetById(Guid id)
+        {
+            return coffeeRepository.GetById(id).Map();
+        }
+
+        public void Update(CoffeeBll coffee)
+        {
+            coffeeRepository.Update(coffee.Map());
         }
     }
 }

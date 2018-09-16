@@ -67,6 +67,7 @@ namespace BLL.App_Start
             kernel.Bind<TeaAndCoffeeDbContext>().ToSelf();
 
             kernel.Bind<ICoffeeRepository>().To<CoffeeRepository>();
+            kernel.Bind<ICountryRepository>().To<CountryRepository>();
         }
     }
 }

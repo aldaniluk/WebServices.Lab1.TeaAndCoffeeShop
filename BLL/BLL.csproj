@@ -89,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Services\CoffeeService.svc" />
+    <Content Include="Services\CountryService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -104,6 +105,10 @@
       <DependentUpon>CoffeeService.svc</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\ICoffeeService.cs" />
+    <Compile Include="Services\CountryService.svc.cs">
+      <DependentUpon>CountryService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\ICountryService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

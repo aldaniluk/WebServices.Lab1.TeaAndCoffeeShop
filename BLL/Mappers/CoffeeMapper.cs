@@ -15,7 +15,21 @@ namespace BLL.Mappers
                 CoffeeSort = (CoffeeSortBll)coffee.CoffeeSortId,
                 MadeFromCountry = coffee.Country.Map(),
                 PriceFor100Gr = coffee.PriceFor100Gr,
-                QualityId = (QualityBll)coffee.QualityId
+                Quality = (QualityBll)coffee.QualityId
+            };
+        }
+
+        public static Coffee Map(this CoffeeBll coffee)
+        {
+            return new Coffee
+            {
+                Id = coffee.Id,
+                Name = coffee.Name,
+                Description = coffee.Description,
+                CoffeeSortId = (int)coffee.CoffeeSort,
+                MadeFromCountryId = coffee.MadeFromCountry.Id,
+                PriceFor100Gr = coffee.PriceFor100Gr,
+                QualityId = (int)coffee.Quality
             };
         }
     }

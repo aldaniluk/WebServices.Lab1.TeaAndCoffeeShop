@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="BLL.Services.CountryService" CodeBehind="CountryService.svc.cs" Factory="Ninject.Extensions.Wcf.NinjectServiceHostFactory" %>

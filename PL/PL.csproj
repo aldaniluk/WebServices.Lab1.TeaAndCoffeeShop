@@ -154,15 +154,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\TeaServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TeaController.cs" />
     <Compile Include="Controllers\CoffeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\SelectListHelper.cs" />
+    <Compile Include="Mappers\TeaMapper.cs" />
     <Compile Include="Mappers\CoffeeMapper.cs" />
     <Compile Include="Mappers\CountryMapper.cs" />
     <Compile Include="Models\CoffeeView.cs" />
     <Compile Include="Models\CountryView.cs" />
+    <Compile Include="Models\TeaView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +190,13 @@
     <None Include="Connected Services\CountryServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\CountryServiceReference\configuration.svcinfo" />
     <None Include="Connected Services\CountryServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\TeaServiceReference\TeaService.disco" />
+    <None Include="Connected Services\TeaServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\TeaServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\TeaServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -217,6 +233,17 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Properties\DataSources\BLL.Models.CountryBll.datasource" />
+    <None Include="Connected Services\TeaServiceReference\TeaService.wsdl" />
+    <None Include="Connected Services\TeaServiceReference\TeaService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TeaServiceReference\TeaService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TeaServiceReference\TeaService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Properties\DataSources\BLL.Models.TeaBll.datasource" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -247,6 +274,12 @@
     <Content Include="Views\Coffee\Delete.cshtml" />
     <Content Include="Views\Coffee\Create.cshtml" />
     <Content Include="Views\Coffee\_Coffee.cshtml" />
+    <Content Include="Views\Tea\_Tea.cshtml" />
+    <Content Include="Views\Tea\Create.cshtml" />
+    <Content Include="Views\Tea\Delete.cshtml" />
+    <Content Include="Views\Tea\Details.cshtml" />
+    <Content Include="Views\Tea\Edit.cshtml" />
+    <Content Include="Views\Tea\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">
@@ -273,6 +306,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\CoffeeServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\CountryServiceReference\" />
+    <WCFMetadataStorage Include="Connected Services\TeaServiceReference\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -2,12 +2,13 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
+<div class="jumbotron_main_page">
     <h1>Tea&CoffeeShop</h1>
     <p class="lead">Tea&CoffeeShop is a internet shop where you could know about different tea and coffee sorts.<p>
 
-    @Html.ActionLink("Tea", "Index", "Tea", null, new { @class = "btn btn-primary btn-lg" })
-    @Html.ActionLink("Coffee", "Index", "Coffee", null, new { @class = "btn btn-primary btn-lg" })
+    <br />
+        @Html.ActionLink("Tea", "Index", "Tea", null, new { @class = "btn btn-success btn-lg" })
+        @Html.ActionLink("Coffee", "Index", "Coffee", null, new { @class = "btn btn-success btn-lg" })
 
 </div>
 

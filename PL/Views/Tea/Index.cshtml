@@ -1,0 +1,30 @@
+﻿@model List<PL.Models.TeaView>
+@{
+    ViewBag.Title = "Tea";
+}
+
+<br />
+@Html.ActionLink("Create", "Create", "Tea", null, new { @class = "btn btn-success" })
+<br /><br />
+
+@*@using (Ajax.BeginForm("Filter", "Tea",
+    new AjaxOptions { UpdateTargetId = "tea_to_replace", HttpMethod = "GET", InsertionMode = InsertionMode.Replace }))
+    {
+    <div class="form-inline">
+        @Html.DropDownList("sort", ViewBag.TeaSorts as SelectList, htmlAttributes: new { @class = "form-control" })
+
+        @Html.DropDownList("countryId", ViewBag.Countries as SelectList, htmlAttributes: new { @class = "form-control" })
+
+        <input type="submit" value="Filter" class="btn btn-default" />
+
+        @Html.ActionLink("Create", "Create", "Tea", null, new { @class = "btn btn-success" })
+    </div>
+    }
+
+    <br /><br />*@
+
+<div class="tea_all">
+    <div id="tea_to_replace">
+        @Html.Partial("~/Views/Tea/_Tea.cshtml", Model)
+    </div>
+</div>

@@ -1,0 +1,31 @@
+﻿@model List<PL.Models.TeaView>
+
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Sort</th>
+        <th>Country</th>
+        <th>Price</th>
+        <th>Quality</th>
+        <th>Description</th>
+        <th></th>
+    </tr>
+
+    @foreach (var tea in Model)
+    {
+        <tr>
+            <td>@tea.Name</td>
+            <td>@tea.TeaSort</td>
+            <td>@tea.MadeFromCountry.Name</td>
+            <td>$@tea.PriceFor100Gr</td>
+            <td>@tea.Quality</td>
+            <td>@tea.Description</td>
+            <td style="width: 250px">
+                @Html.ActionLink("Details", "Details", "Tea", new { id = @tea.Id }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Edit", "Edit", "Tea", new { id = @tea.Id }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Delete", "Delete", "Tea", new { id = @tea.Id }, new { @class = "btn btn-default" })
+            </td>
+        </tr>
+    }
+
+</table>

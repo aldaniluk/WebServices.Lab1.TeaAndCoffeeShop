@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DAL.Interfaces
 {
-    interface ITeaRepository
+    public interface ITeaRepository
     {
         List<Tea> GetAll();
 

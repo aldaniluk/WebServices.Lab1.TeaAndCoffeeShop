@@ -1,6 +1,7 @@
 ﻿using BLL.Models;
 using PL.CoffeeServiceReference;
 using PL.CountryServiceReference;
+using PL.Helpers;
 using PL.Mappers;
 using PL.Models;
 using System;
@@ -24,8 +25,8 @@ namespace PL.Controllers
         public ActionResult Index()
         {
             List<CoffeeView> allCoffee = coffeeService.GetAll().Select(CoffeeMapper.Map).ToList();
-            ViewBag.Countries = GetCountriesLikeSelectList();
-            ViewBag.CoffeeSorts = GetEnumLikeSelectList<CoffeeSortBll>();
+            ViewBag.Countries = SelectListHelper.GetCountries(countryService);
+            ViewBag.CoffeeSorts = SelectListHelper.GetEnum<CoffeeSortBll>();
 
             return View(allCoffee);
         }
@@ -40,9 +41,9 @@ namespace PL.Controllers
         public ActionResult Edit(Guid id)
         {
             CoffeeView coffee = coffeeService.GetById(id).Map();
-            ViewBag.Countries = GetCountriesLikeSelectList();
-            ViewBag.CoffeeSorts = GetEnumLikeSelectList<CoffeeSortBll>();
-            ViewBag.Qualities = GetEnumLikeSelectList<QualityBll>();
+            ViewBag.Countries = SelectListHelper.GetCountries(countryService);
+            ViewBag.CoffeeSorts = SelectListHelper.GetEnum<CoffeeSortBll>();
+            ViewBag.Qualities = SelectListHelper.GetEnum<QualityBll>();
 
             return View(coffee);
         }
@@ -56,9 +57,9 @@ namespace PL.Controllers
                 return RedirectToAction("Details", "Coffee", new { id = coffee.Id });
             }
 
-            ViewBag.Countries = GetCountriesLikeSelectList();
-            ViewBag.CoffeeSorts = GetEnumLikeSelectList<CoffeeSortBll>();
-            ViewBag.Qualities = GetEnumLikeSelectList<QualityBll>();
+            ViewBag.Countries = SelectListHelper.GetCountries(countryService);
+            ViewBag.CoffeeSorts = SelectListHelper.GetEnum<CoffeeSortBll>();
+            ViewBag.Qualities = SelectListHelper.GetEnum<QualityBll>();
 
             return View("Edit", coffee);
         }
@@ -79,9 +80,9 @@ namespace PL.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.Countries = GetCountriesLikeSelectList();
-            ViewBag.CoffeeSorts = GetEnumLikeSelectList<CoffeeSortBll>();
-            ViewBag.Qualities = GetEnumLikeSelectList<QualityBll>();
+            ViewBag.Countries = SelectListHelper.GetCountries(countryService);
+            ViewBag.CoffeeSorts = SelectListHelper.GetEnum<CoffeeSortBll>();
+            ViewBag.Qualities = SelectListHelper.GetEnum<QualityBll>();
 
             return View();
         }
@@ -97,9 +98,9 @@ namespace PL.Controllers
                 return RedirectToAction("Index", "Coffee");
             }
 
-            ViewBag.Countries = GetCountriesLikeSelectList();
-            ViewBag.CoffeeSorts = GetEnumLikeSelectList<CoffeeSortBll>();
-            ViewBag.Qualities = GetEnumLikeSelectList<QualityBll>();
+            ViewBag.Countries = SelectListHelper.GetCountries(countryService);
+            ViewBag.CoffeeSorts = SelectListHelper.GetEnum<CoffeeSortBll>();
+            ViewBag.Qualities = SelectListHelper.GetEnum<QualityBll>();
 
             return View("Create");
         }
@@ -114,21 +115,6 @@ namespace PL.Controllers
             }
 
             return View("_Coffee", coffee);
-        }
-
-        private SelectList GetCountriesLikeSelectList()
-        {
-            List<CountryView> countries = countryService.GetAll().Select(CountryMapper.Map).ToList();
-
-            return new SelectList(countries, "Id", "Name");
-        }
-
-        private SelectList GetEnumLikeSelectList<T>() where T : struct
-        {
-            IEnumerable<T> enumValues = Enum.GetValues(typeof(T)).Cast<T>();
-
-            return new SelectList(enumValues.Select(ev => new { Id = (int)(object)ev, Name = ev.ToString() }),
-                "Id", "Name");
         }
     }
 }

@@ -5,6 +5,8 @@
 
 <h2>Are you sure you want to delete this coffee?</h2>
 
+<br />
+
 @using (Html.BeginForm("Deleted", "Coffee", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
@@ -59,11 +61,11 @@
             </div>
         </div>
 
-
+        <br />
 
         <div class="form-group">
             <div class="form-actions no-color col-md-offset-2 col-md-10">
-                <input type="submit" value="Delete" class="btn btn-default" />
+                <input type="submit" value="Delete" class="btn btn-success" />
             </div>
         </div>
 

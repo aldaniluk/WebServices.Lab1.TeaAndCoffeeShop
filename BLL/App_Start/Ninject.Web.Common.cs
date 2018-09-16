@@ -68,6 +68,7 @@ namespace BLL.App_Start
 
             kernel.Bind<ICoffeeRepository>().To<CoffeeRepository>();
             kernel.Bind<ICountryRepository>().To<CountryRepository>();
+            kernel.Bind<ITeaRepository>().To<TeaRepository>();
         }
     }
 }

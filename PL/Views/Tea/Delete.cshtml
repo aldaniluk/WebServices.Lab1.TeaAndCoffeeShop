@@ -1,0 +1,73 @@
+﻿@model PL.Models.TeaView
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Are you sure you want to delete this tea?</h2>
+
+<br />
+
+@using (Html.BeginForm("Deleted", "Tea", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.MadeFromCountry.Id)
+    @Html.HiddenFor(model => model.TeaSort)
+    @Html.HiddenFor(model => model.Description)
+    @Html.HiddenFor(model => model.Name)
+    @Html.HiddenFor(model => model.PriceFor100Gr)
+    @Html.HiddenFor(model => model.Quality)
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MadeFromCountry.Name, new { @class = "col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.MadeFromCountry.Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TeaSort, new { @class = "col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.TeaSort)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Quality, new { @class = "col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Quality)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PriceFor100Gr, new { @class = "col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.PriceFor100Gr)
+            </div>
+        </div>
+
+        <br />
+
+        <div class="form-group">
+            <div class="form-actions no-color col-md-offset-2 col-md-10">
+                <input type="submit" value="Delete" class="btn btn-success" />
+            </div>
+        </div>
+
+    </div>
+}

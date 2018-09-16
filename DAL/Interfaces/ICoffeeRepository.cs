@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DAL.Interfaces
 {
-    interface ICoffeeRepository
+    public interface ICoffeeRepository
     {
         List<Coffee> GetAll();
 

@@ -1,4 +1,5 @@
-﻿using SC = System.Console;
+﻿using PL.Console.CoffeeServiceReference;
+using SC = System.Console;
 
 namespace PL.Console
 {
@@ -6,10 +7,9 @@ namespace PL.Console
     {
         static void Main(string[] args)
         {
-
-            using (var client = new CoffeeServiceReference.CoffeeServiceClient())
+            using (var client = new CoffeeServiceClient())
             {
-                foreach (var coffee in client.GetAll())
+                foreach (CoffeeBll coffee in client.GetAll())
                 {
                     SC.WriteLine($"{coffee.Name} {coffee.CoffeeSort} {coffee.MadeFromCountry.Name}");
                 }

@@ -2,19 +2,17 @@
 using System.Linq;
 using BLL.Mappers;
 using BLL.Models;
-using DAL.Repositories;
-using ORM;
+using DAL.Interfaces;
 
 namespace BLL.Services
 {
     public class CoffeeService : ICoffeeService
     {
-        private readonly CoffeeRepository coffeeRepository;
+        private readonly ICoffeeRepository coffeeRepository;
 
-        public CoffeeService()
+        public CoffeeService(ICoffeeRepository coffeeRepository)
         {
-            var context = new TeaAndCoffeeDbContext();
-            this.coffeeRepository = new CoffeeRepository(context);
+            this.coffeeRepository = coffeeRepository;
         }
 
         public List<CoffeeBll> GetAll()

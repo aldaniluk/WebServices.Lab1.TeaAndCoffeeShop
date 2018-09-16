@@ -1,5 +1,4 @@
-﻿using DAL.Repositories;
-using ORM;
+﻿using SC = System.Console;
 
 namespace PL.Console
 {
@@ -8,12 +7,11 @@ namespace PL.Console
         static void Main(string[] args)
         {
 
-            using (var context = new TeaAndCoffeeDbContext())
+            using (var client = new CoffeeServiceReference.CoffeeServiceClient())
             {
-                var repository = new CoffeeRepository(context);
-                foreach (var coffee in repository.GetAll())
+                foreach (var coffee in client.GetAll())
                 {
-                    System.Console.WriteLine($"{coffee.Name} {coffee.CoffeeSortId}");
+                    SC.WriteLine($"{coffee.Name} {coffee.CoffeeSort} {coffee.MadeFromCountry.Name}");
                 }
             }
         }

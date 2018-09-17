@@ -175,10 +175,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\TeaAndCoffeeDb.mdf" />
-    <Content Include="App_Data\TeaAndCoffeeDb_log.ldf">
-      <DependentUpon>TeaAndCoffeeDb.mdf</DependentUpon>
-    </Content>
     <None Include="Connected Services\CoffeeServiceReference\CoffeeService.disco" />
     <None Include="Connected Services\CoffeeServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\CoffeeServiceReference\configuration.svcinfo" />

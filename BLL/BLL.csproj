@@ -88,6 +88,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\TeaAndCoffeeDb.mdf" />
+    <Content Include="App_Data\TeaAndCoffeeDb_log.ldf">
+      <DependentUpon>TeaAndCoffeeDb.mdf</DependentUpon>
+    </Content>
     <Content Include="Services\CoffeeService.svc" />
     <Content Include="Services\CountryService.svc" />
     <Content Include="Services\TeaService.svc" />

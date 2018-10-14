@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="BLL.Services.CoffeeService" CodeBehind="CoffeeService.svc.cs" Factory="Ninject.Extensions.Wcf.NinjectServiceHostFactory" %>

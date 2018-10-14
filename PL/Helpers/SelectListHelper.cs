@@ -1,4 +1,4 @@
-﻿using PL.CountryServiceReference;
+﻿using BLL.Models;
 using PL.Mappers;
 using PL.Models;
 using System;
@@ -10,10 +10,10 @@ namespace PL.Helpers
 {
     public static class SelectListHelper
     {
-        public static SelectList GetCountries(ICountryService countryService)
+        public static SelectList GetCountries()
         {
-            List<CountryView> countries = countryService.GetAll().OrderBy(c => c.Name).Select(CountryMapper.Map)
-                .ToList();
+            List<CountryView> countries = ParseFromResponseHelper.GetObject<List<CountryBll>>("Country")
+                .OrderBy(c => c.Name).Select(CountryMapper.Map).ToList();
 
             return new SelectList(countries, "Id", "Name");
         }

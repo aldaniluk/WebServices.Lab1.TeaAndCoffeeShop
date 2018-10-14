@@ -1,6 +1,4 @@
 ﻿using BLL.Models;
-using PL.CoffeeServiceReference;
-using PL.CountryServiceReference;
 using PL.Helpers;
 using PL.Mappers;
 using PL.Models;
@@ -13,19 +11,11 @@ namespace PL.Controllers
 {
     public class CoffeeController : Controller
     {
-        private ICoffeeService coffeeService;
-        private ICountryService countryService;
-
-        public CoffeeController()
-        {
-            coffeeService = new CoffeeServiceClient();
-            countryService = new CountryServiceClient();
-        }
-
         public ActionResult Index()
         {
-            List<CoffeeView> allCoffee = coffeeService.GetAll().Select(CoffeeMapper.Map).ToList();
-            ViewBag.Countries = SelectListHelper.GetCountries(countryService);
+            List<CoffeeView> allCoffee = ParseFromResponseHelper.GetObject<List<CoffeeBll>>("Coffee")
+                .Select(CoffeeMapper.Map).ToList();
+            ViewBag.Countries = SelectListHelper.GetCountries();
             ViewBag.CoffeeSorts = SelectListHelper.GetEnum<CoffeeSortBll>();
 
             return View(allCoffee);
@@ -33,15 +23,15 @@ namespace PL.Controllers
 
         public ActionResult Details(Guid id)
         {
-            CoffeeView coffee = coffeeService.GetById(id).Map();
+            CoffeeView coffee = ParseFromResponseHelper.GetObject<CoffeeBll>("Coffee?id=" + id).Map();
 
             return View(coffee);
         }
 
         public ActionResult Edit(Guid id)
         {
-            CoffeeView coffee = coffeeService.GetById(id).Map();
-            ViewBag.Countries = SelectListHelper.GetCountries(countryService);
+            CoffeeView coffee = ParseFromResponseHelper.GetObject<CoffeeBll>("Coffee?id=" + id).Map();
+            ViewBag.Countries = SelectListHelper.GetCountries();
             ViewBag.CoffeeSorts = SelectListHelper.GetEnum<CoffeeSortBll>();
             ViewBag.Qualities = SelectListHelper.GetEnum<QualityBll>();
 
@@ -52,12 +42,12 @@ namespace PL.Controllers
         {
             if (ModelState.IsValid)
             {
-                coffeeService.Update(coffee.Map());
+                ParseFromResponseHelper.PutObject<CoffeeBll>("Coffee/Update", coffee.Map());
 
                 return RedirectToAction("Details", "Coffee", new { id = coffee.Id });
             }
 
-            ViewBag.Countries = SelectListHelper.GetCountries(countryService);
+            ViewBag.Countries = SelectListHelper.GetCountries();
             ViewBag.CoffeeSorts = SelectListHelper.GetEnum<CoffeeSortBll>();
             ViewBag.Qualities = SelectListHelper.GetEnum<QualityBll>();
 
@@ -66,21 +56,21 @@ namespace PL.Controllers
 
         public ActionResult Delete(Guid id)
         {
-            CoffeeView coffee = coffeeService.GetById(id).Map();
+            CoffeeView coffee = ParseFromResponseHelper.GetObject<CoffeeBll>("Coffee?id=" + id).Map();
 
             return View(coffee);
         }
 
         public ActionResult Deleted(CoffeeView coffee)
         {
-            coffeeService.Delete(coffee.Map());
+            ParseFromResponseHelper.DeleteObject("Coffee/Delete", coffee.Map());
 
             return RedirectToAction("Index", "Coffee");
         }
 
         public ActionResult Create()
         {
-            ViewBag.Countries = SelectListHelper.GetCountries(countryService);
+            ViewBag.Countries = SelectListHelper.GetCountries();
             ViewBag.CoffeeSorts = SelectListHelper.GetEnum<CoffeeSortBll>();
             ViewBag.Qualities = SelectListHelper.GetEnum<QualityBll>();
 
@@ -93,12 +83,12 @@ namespace PL.Controllers
 
             if (ModelState.IsValid)
             {
-                coffeeService.Create(coffee.Map());
+                ParseFromResponseHelper.PostObject("Coffee/Create", coffee.Map());
 
                 return RedirectToAction("Index", "Coffee");
             }
 
-            ViewBag.Countries = SelectListHelper.GetCountries(countryService);
+            ViewBag.Countries = SelectListHelper.GetCountries();
             ViewBag.CoffeeSorts = SelectListHelper.GetEnum<CoffeeSortBll>();
             ViewBag.Qualities = SelectListHelper.GetEnum<QualityBll>();
 
@@ -107,7 +97,9 @@ namespace PL.Controllers
 
         public ActionResult Filter(CoffeeSortBll sort, Guid countryId)
         {
-            List<CoffeeView> coffee = coffeeService.Filter(sort, countryId).Select(CoffeeMapper.Map).ToList();
+            List<CoffeeView> coffee = ParseFromResponseHelper
+                .GetObject<List<CoffeeBll>>("Coffee/Filter?sort=" + sort + "&countryId=" + countryId)
+                .Select(CoffeeMapper.Map).ToList();
 
             if (Request.IsAjaxRequest())
             {

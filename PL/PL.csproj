@@ -144,27 +144,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Connected Services\CoffeeServiceReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Connected Services\CountryServiceReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Connected Services\TeaServiceReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\TeaController.cs" />
     <Compile Include="Controllers\CoffeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ParseFromResponseHelper.cs" />
     <Compile Include="Helpers\SelectListHelper.cs" />
     <Compile Include="Mappers\TeaMapper.cs" />
     <Compile Include="Mappers\CoffeeMapper.cs" />
@@ -175,27 +161,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\CoffeeServiceReference\CoffeeService.disco" />
-    <None Include="Connected Services\CoffeeServiceReference\configuration91.svcinfo" />
-    <None Include="Connected Services\CoffeeServiceReference\configuration.svcinfo" />
-    <None Include="Connected Services\CoffeeServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Connected Services\CountryServiceReference\CountryService.disco" />
-    <None Include="Connected Services\CountryServiceReference\configuration91.svcinfo" />
-    <None Include="Connected Services\CountryServiceReference\configuration.svcinfo" />
-    <None Include="Connected Services\CountryServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Connected Services\TeaServiceReference\TeaService.disco" />
-    <None Include="Connected Services\TeaServiceReference\configuration91.svcinfo" />
-    <None Include="Connected Services\TeaServiceReference\configuration.svcinfo" />
-    <None Include="Connected Services\TeaServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -207,38 +172,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Connected Services\CoffeeServiceReference\CoffeeService.wsdl" />
-    <None Include="Connected Services\CoffeeServiceReference\CoffeeService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\CoffeeServiceReference\CoffeeService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\CoffeeServiceReference\CoffeeService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Properties\DataSources\BLL.Models.CoffeeBll.datasource" />
-    <None Include="Connected Services\CountryServiceReference\CountryService.wsdl" />
-    <None Include="Connected Services\CountryServiceReference\CountryService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\CountryServiceReference\CountryService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\CountryServiceReference\CountryService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Properties\DataSources\BLL.Models.CountryBll.datasource" />
-    <None Include="Connected Services\TeaServiceReference\TeaService.wsdl" />
-    <None Include="Connected Services\TeaServiceReference\TeaService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\TeaServiceReference\TeaService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\TeaServiceReference\TeaService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Properties\DataSources\BLL.Models.TeaBll.datasource" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -278,12 +213,6 @@
     <Content Include="Views\Tea\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BLL\BLL.csproj">
-      <Project>{646ed01a-2666-45b6-9276-a08e4313a14b}</Project>
-      <Name>BLL</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
   <ItemGroup>
@@ -300,9 +229,10 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\CoffeeServiceReference\" />
-    <WCFMetadataStorage Include="Connected Services\CountryServiceReference\" />
-    <WCFMetadataStorage Include="Connected Services\TeaServiceReference\" />
+    <ProjectReference Include="..\BLL.WebApi\BLL.WebApi.csproj">
+      <Project>{fa93cefe-7bc9-40a7-a6a7-a825aa5a7312}</Project>
+      <Name>BLL.WebApi</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

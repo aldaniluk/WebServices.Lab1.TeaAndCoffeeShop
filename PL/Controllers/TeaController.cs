@@ -1,31 +1,21 @@
 ﻿using BLL.Models;
-using PL.CountryServiceReference;
 using PL.Mappers;
 using PL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using PL.TeaServiceReference;
 using PL.Helpers;
 
 namespace PL.Controllers
 {
     public class TeaController : Controller
     {
-        private ITeaService teaService;
-        private ICountryService countryService;
-
-        public TeaController()
-        {
-            teaService = new TeaServiceClient();
-            countryService = new CountryServiceClient();
-        }
-
         public ActionResult Index()
         {
-            List<TeaView> allTea = teaService.GetAll().Select(TeaMapper.Map).ToList();
-            ViewBag.Countries = SelectListHelper.GetCountries(countryService);
+            List<TeaView> allTea = ParseFromResponseHelper.GetObject<List<TeaBll>>("Tea")
+                .Select(TeaMapper.Map).ToList();
+            ViewBag.Countries = SelectListHelper.GetCountries();
             ViewBag.TeaSorts = SelectListHelper.GetEnum<TeaSortBll>();
 
             return View(allTea);
@@ -33,15 +23,15 @@ namespace PL.Controllers
 
         public ActionResult Details(Guid id)
         {
-            TeaView Tea = teaService.GetById(id).Map();
+            TeaView Tea = ParseFromResponseHelper.GetObject<TeaBll>("Tea?id=" + id).Map();
 
             return View(Tea);
         }
 
         public ActionResult Edit(Guid id)
         {
-            TeaView Tea = teaService.GetById(id).Map();
-            ViewBag.Countries = SelectListHelper.GetCountries(countryService);
+            TeaView Tea = ParseFromResponseHelper.GetObject<TeaBll>("Tea?id=" + id).Map();
+            ViewBag.Countries = SelectListHelper.GetCountries();
             ViewBag.TeaSorts = SelectListHelper.GetEnum<TeaSortBll>();
             ViewBag.Qualities = SelectListHelper.GetEnum<QualityBll>();
 
@@ -52,12 +42,12 @@ namespace PL.Controllers
         {
             if (ModelState.IsValid)
             {
-                teaService.Update(Tea.Map());
+                ParseFromResponseHelper.PutObject("Tea/Update", Tea.Map());
 
                 return RedirectToAction("Details", "Tea", new { id = Tea.Id });
             }
 
-            ViewBag.Countries = SelectListHelper.GetCountries(countryService);
+            ViewBag.Countries = SelectListHelper.GetCountries();
             ViewBag.TeaSorts = SelectListHelper.GetEnum<TeaSortBll>();
             ViewBag.Qualities = SelectListHelper.GetEnum<QualityBll>();
 
@@ -66,21 +56,21 @@ namespace PL.Controllers
 
         public ActionResult Delete(Guid id)
         {
-            TeaView Tea = teaService.GetById(id).Map();
+            TeaView Tea = ParseFromResponseHelper.GetObject<TeaBll>("Tea?id=" + id).Map();
 
             return View(Tea);
         }
 
         public ActionResult Deleted(TeaView Tea)
         {
-            teaService.Delete(Tea.Map());
+            ParseFromResponseHelper.DeleteObject("Tea/Delete", Tea.Map());
 
             return RedirectToAction("Index", "Tea");
         }
 
         public ActionResult Create()
         {
-            ViewBag.Countries = SelectListHelper.GetCountries(countryService);
+            ViewBag.Countries = SelectListHelper.GetCountries();
             ViewBag.TeaSorts = SelectListHelper.GetEnum<TeaSortBll>();
             ViewBag.Qualities = SelectListHelper.GetEnum<QualityBll>();
 
@@ -93,12 +83,12 @@ namespace PL.Controllers
 
             if (ModelState.IsValid)
             {
-                teaService.Create(Tea.Map());
+                ParseFromResponseHelper.PostObject("Tea/Create", Tea.Map());
 
                 return RedirectToAction("Index", "Tea");
             }
 
-            ViewBag.Countries = SelectListHelper.GetCountries(countryService);
+            ViewBag.Countries = SelectListHelper.GetCountries();
             ViewBag.TeaSorts = SelectListHelper.GetEnum<TeaSortBll>();
             ViewBag.Qualities = SelectListHelper.GetEnum<QualityBll>();
 
